@@ -1,0 +1,16 @@
+<%= form_with(url: search_path, method: :post, data: {
+    controller: "search",
+    action: "keyup->search#suggestions",
+    suggestions_url: search_suggestions_path,
+}) do |form| %>
+  <div class="relative">
+    <%= form.text_field :query, data: {
+            search_target: "input",
+            action: "blur->search#hideSuggestions",
+        },
+        placeholder: "Search...", autocomplete: "off" %>
+    <div>
+      <%= form.submit "Search" %>
+    </div>
+  </div>
+<% end %>
